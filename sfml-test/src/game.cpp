@@ -4,8 +4,8 @@
 #include "variables.h"
 #include <bits/stdc++.h>
 #include <SFML/Graphics.hpp>
-#define HEIGHT 500
-#define WIDTH 700
+#define HEIGHT 600
+#define WIDTH 850
 
 Game::Game()
 {
@@ -39,44 +39,38 @@ void Game::levelInitialiser()
             case 0:
                 mapA[i][j].setType(0);
                 mapA[i][j].setPosition(initialX, initialY);
-                mapA[i][j].setSize(initialX, initialY);
                 mapA[i][j].initialiser();
                 break;
             case 1:
                 mapA[i][j].setType(1);
                 mapA[i][j].setPosition(initialX, initialY);
-                mapA[i][j].setSize(initialX, initialY);
                 mapA[i][j].initialiser();
                 break;
             case 2:
                 mapA[i][j].setType(2);
                 mapA[i][j].setPosition(initialX, initialY);
-                mapA[i][j].setSize(initialX, initialY);
                 mapA[i][j].initialiser();
                 break;
             case 3:
                 mapA[i][j].setType(3);
                 mapA[i][j].setPosition(initialX, initialY);
-                mapA[i][j].setSize(initialX, initialY);
                 mapA[i][j].initialiser();
                 break;
             case 4:
                 mapA[i][j].setType(4);
                 mapA[i][j].setPosition(initialX, initialY);
-                mapA[i][j].setSize(initialX, initialY);
                 mapA[i][j].initialiser();
                 break;
             case 5:
                 mapA[i][j].setType(5);
                 mapA[i][j].setPosition(initialX, initialY);
-                mapA[i][j].setSize(initialX, initialY);
                 mapA[i][j].initialiser();
                 break;
             }
-            initialX += 50;
+            initialX += 64;
         }
-        initialY += 50;
-        initialX = 50;
+        initialY += 64;
+        initialX = 64;
     }
 }
 

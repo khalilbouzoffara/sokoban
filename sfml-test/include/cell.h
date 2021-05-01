@@ -16,7 +16,6 @@ class cell
         void setType(int);
         void setPosition(int,int);
         void initialiser();
-        void setSize(int ,int );
         void draw(sf::RenderWindow&);
         sf::Vector2f getPosition();
         virtual ~cell();

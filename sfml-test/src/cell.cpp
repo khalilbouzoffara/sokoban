@@ -113,10 +113,7 @@ sf::Vector2f cell::getPosition() {
 	return cellSprite.getPosition();
 }
 
-void cell::setSize(int x,int y)
-{
-    cellSprite.setTextureRect(sf::IntRect(x, y, 64, 64));
-}
+
 cell::~cell()
 {
 
