@@ -9,10 +9,5 @@ int main()
     Game sokoban;
     sokoban.gameLoop();
 
-    /*
-    Level lvl(6,10);
-    lvl.loadCarte();
-    lvl.affichageCarte();
-    */
     return 0;
 }
