@@ -1,6 +1,6 @@
 #ifndef VARIABLES_H
 #define VARIABLES_H
-
+#include "MainMenu.h"
 #include "Game.h"
 #include "Level.h"
 #include "cell.h"
@@ -14,7 +14,7 @@ cell mapA[6][10];
 
 RectangleShape gameBG;
 
+MainMenu MM;
 
-
-
+int status=0;
 #endif // VARIABLES_H

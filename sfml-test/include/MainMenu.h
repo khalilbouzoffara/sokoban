@@ -7,7 +7,7 @@
 #include <SFML/Graphics.hpp>
 
 class MainMenu {
-private:
+public:
 
     //sf::Text m_gameTitle;
     sf::Text m_playButton;
@@ -24,11 +24,23 @@ private:
 public:
      MainMenu();
     ~MainMenu();
+    //getters
+    bool getPBS();
+    bool getPBP();
+    bool getEBS();
+    bool getEBP();
+    //setters
+    void setPBS(bool);
+    void setPBP(bool);
+    void setEBS(bool);
+    void setEBP(bool);
 
-    void Init() ;
-    void ProcessInput() ;
-    void Update() ;
-    void Draw() ;
-    void MenuLoop();
+
+    void keyPress(sf::RenderWindow &);
+    void Init(sf::RenderWindow &) ;
+    void ProcessInput(sf::RenderWindow &) ;
+    void Update(sf::RenderWindow &) ;
+    void Draw(sf::RenderWindow &) ;
+    void MenuLoop(sf::RenderWindow &);
 };
 #endif // MAINMENU_H

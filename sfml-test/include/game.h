@@ -14,6 +14,7 @@ class Game
         Game(Level); //and another one
         void gameInitaliser(); //Background initialiser
         void levelInitialiser(); //Grahpical map update
+        void render();
         void gameLoop();      //Window opened and drawing Graphical carte as well as key pressors
         void setLevel(Level); //Level Setter
         void mainloopOnce(int n); //does testing and check if game ended
@@ -25,7 +26,6 @@ class Game
         RenderWindow *window;
         Level lvl;
         Personnage p;
-        int status;
 };
 
 #endif // GAME_H

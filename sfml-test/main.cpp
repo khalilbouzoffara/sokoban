@@ -1,15 +1,17 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "MainMenu.h"
-//#define WIDTH 1500 //1500
-//#define HEIGHT 800 //800
+#define HEIGHT 650
+#define WIDTH 800
 #include "Level.h"
 #include "Game.h"
 int main()
-{   cout << "hello world";
+{
     Game sokoban;
     sokoban.gameLoop();
+    //sf::RenderWindow *window;
+    //window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "Sokoban");
     //MainMenu M;
-    //M.MenuLoop();
+    //M.MenuLoop(*window);
     return 0;
 }
