@@ -8,12 +8,13 @@
 class Level
 {
     public:
+        Level();
         Level(int,int);
         void loadCarte();
-        std::vector<std::vector<int>> getCarte();
+        std::vector<std::vector<int>> getcarte();
         void affichageCarte();
         virtual ~Level();
-
+        void setcarte( std::vector<std::vector<int>>);
     private:
         std::vector<std::vector<int>> carte;
         int row;

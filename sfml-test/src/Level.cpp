@@ -4,7 +4,10 @@
 #include <vector>
 
 using namespace std;
+Level::Level()
+{
 
+}
 Level::Level(int jrow, int jcol)
 {
     row=jrow;
@@ -73,7 +76,12 @@ void Level::affichageCarte()
     }
 }
 
-std::vector<std::vector<int>> Level::getCarte()
+void Level::setcarte(vector<vector<int>> _){
+    carte = _;
+
+}
+
+std::vector<std::vector<int>> Level::getcarte()
 {
     return carte;
 }

@@ -1,5 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
+#include "Personnage.h"
+#include "Level.h"
 
 #include <bits/stdc++.h>
 #include <SFML/Graphics.hpp>
@@ -8,14 +10,22 @@ using namespace sf;
 class Game
 {
     public:
-        Game();
-        void gameInitaliser();
-        void levelInitialiser();
-        void gameLoop();
+        Game(); //Constructor
+        Game(Level); //and another one
+        void gameInitaliser(); //Background initialiser
+        void levelInitialiser(); //Grahpical map update
+        void gameLoop();      //Window opened and drawing Graphical carte as well as key pressors
+        void setLevel(Level); //Level Setter
+        void mainloopOnce(int n); //does testing and check if game ended
+        void testing(int); //Take one move and change Level and personnage accordingly
+        int NombreDe_b(); //Check if game ended
+        void mainloop(int n);   //does mainloopOnce in a while till game ends;
         virtual ~Game();
-
     private:
         RenderWindow *window;
+        Level lvl;
+        Personnage p;
+        int status;
 };
 
 #endif // GAME_H
