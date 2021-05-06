@@ -15,8 +15,6 @@ MainMenu::MainMenu() :
 
 
 
-
-
 }
 
 MainMenu::~MainMenu()
@@ -26,15 +24,15 @@ MainMenu::~MainMenu()
 
 bool MainMenu::getPBP()
 {
-    return m_isPlayButtonSelected;
+    return m_isPlayButtonPressed;
 }
 bool MainMenu::getPBS()
 {
-    return m_isPlayButtonPressed;
+    return m_isPlayButtonSelected;
 }
 bool MainMenu::getEBP()
 {
-    return m_isExitButtonSelected;
+    return m_isExitButtonPressed;
 }
 bool MainMenu::getEBS()
 {

@@ -14,7 +14,7 @@ class Level
         std::vector<std::vector<int>> getcarte();
         void affichageCarte();
         virtual ~Level();
-        void setcarte( std::vector<std::vector<int>>);
+        void setcarte(std::vector<std::vector<int>>);
     private:
         std::vector<std::vector<int>> carte;
         int row;

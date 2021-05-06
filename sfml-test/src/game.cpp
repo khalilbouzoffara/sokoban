@@ -310,8 +310,7 @@ void Game::gameLoop()
                 }
                 else if(MM.getEBP())
                 {
-                    window->
-                    close();
+                    window->close();
                 }
                 break;
 
@@ -344,6 +343,7 @@ void Game::gameLoop()
                     if (event.key.code == sf::Keyboard::R)
                     {
                         cout<<"R" << endl;
+
                         Level l;
                         l.loadCarte();
                         Personnage _(lvl);

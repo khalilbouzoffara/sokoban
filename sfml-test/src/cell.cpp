@@ -6,6 +6,12 @@
 cell::cell()
 {
 
+    if (!cellTexture.loadFromFile("textures/player/playerDown.png"))
+    {
+        std::cout << "error pour charger le joueur" << std::endl;
+    }
+    cellSprite.setTexture(cellTexture, true);
+
 }
 
 
@@ -46,7 +52,7 @@ void cell::initialiser()
         }
 
         cellSprite.setTexture(cellTexture, true);
-		break;
+        break;
     case 1: // wall
         if (!cellTexture.loadFromFile("textures/wall.png"))
         {
@@ -54,7 +60,7 @@ void cell::initialiser()
         }
         cellSprite.setTexture(cellTexture, true);
 
-		break;
+        break;
     case 2: // destination
         if (!cellTexture.loadFromFile("textures/finishPoint.png"))
         {
@@ -62,25 +68,55 @@ void cell::initialiser()
         }
         cellSprite.setTexture(cellTexture, true);
 
-		break;
+        break;
 
     case 3: // box
+
+
         if (!cellTexture.loadFromFile("textures/box.png"))
         {
             std::cout << "error pour charger le box" << std::endl;
         }
         cellSprite.setTexture(cellTexture, true);
 
-		break;
+        break;
 
     case 4: // player
-        if (!cellTexture.loadFromFile("textures/player/playerDown.png"))
-        {
-            std::cout << "error pour charger le joueur" << std::endl;
-        }
-        cellSprite.setTexture(cellTexture, true);
 
-		break;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+        {
+            if (!cellTexture.loadFromFile("textures/player/playerLeft.png"))
+            {
+                std::cout << "error pour charger le joueur" << std::endl;
+            }
+            cellSprite.setTexture(cellTexture, true);
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        {
+            if (!cellTexture.loadFromFile("textures/player/playerRight.png"))
+            {
+                std::cout << "error pour charger le joueur" << std::endl;
+            }
+            cellSprite.setTexture(cellTexture, true);
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        {
+            if (!cellTexture.loadFromFile("textures/player/playerDown.png"))
+            {
+                std::cout << "error pour charger le joueur" << std::endl;
+            }
+            cellSprite.setTexture(cellTexture, true);
+        }
+        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        {
+            if (!cellTexture.loadFromFile("textures/player/playerUp.png"))
+            {
+                std::cout << "error pour charger le joueur" << std::endl;
+            }
+            cellSprite.setTexture(cellTexture, true);
+        }
+
+        break;
 
     case 5: // box_win
         if (!cellTexture.loadFromFile("textures/boxOnGoal.png"))
@@ -89,7 +125,7 @@ void cell::initialiser()
         }
         cellSprite.setTexture(cellTexture, true);
 
-		break;
+        break;
     }
 }
 
@@ -101,16 +137,17 @@ cell::tile cell::getType()
 
 void cell::draw(sf::RenderWindow& window)
 {
-	window.draw(cellSprite);
+    window.draw(cellSprite);
 }
 
 void cell::setPosition(int x, int y)
 {
-        cellSprite.setPosition(x,y);
+    cellSprite.setPosition(x,y);
 }
 
-sf::Vector2f cell::getPosition() {
-	return cellSprite.getPosition();
+sf::Vector2f cell::getPosition()
+{
+    return cellSprite.getPosition();
 }
 
 
