@@ -472,24 +472,24 @@
 	<bits/stdc++.h>
 	<SFML/Graphics.hpp>
 
-1620174452 source:c:\users\skyllilolz\desktop\studying\projet\sokoban aux2\sokoban\sfml-test\main.cpp
+1620250486 source:c:\users\skyllilolz\desktop\studying\projet\sokoban aux2\sokoban\sfml-test\main.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	"MainMenu.h"
 	"Level.h"
 	"Game.h"
 
-1620159431 c:\users\skyllilolz\desktop\studying\projet\sokoban aux2\sokoban\sfml-test\include\level.h
+1620344598 c:\users\skyllilolz\desktop\studying\projet\sokoban aux2\sokoban\sfml-test\include\level.h
 	<SFML/Graphics.hpp>
 	<vector>
 
-1620172794 c:\users\skyllilolz\desktop\studying\projet\sokoban aux2\sokoban\sfml-test\include\game.h
+1620250486 c:\users\skyllilolz\desktop\studying\projet\sokoban aux2\sokoban\sfml-test\include\game.h
 	"Personnage.h"
 	"Level.h"
 	<bits/stdc++.h>
 	<SFML/Graphics.hpp>
 
-1620061450 source:c:\users\skyllilolz\desktop\studying\projet\sokoban aux2\sokoban\sfml-test\src\cell.cpp
+1620356033 source:c:\users\skyllilolz\desktop\studying\projet\sokoban aux2\sokoban\sfml-test\src\cell.cpp
 	"cell.h"
 	<bits/stdc++.h>
 	<SFML/Graphics.hpp>
@@ -497,22 +497,24 @@
 1620061450 c:\users\skyllilolz\desktop\studying\projet\sokoban aux2\sokoban\sfml-test\include\cell.h
 	<SFML/Graphics.hpp>
 
-1620174391 source:c:\users\skyllilolz\desktop\studying\projet\sokoban aux2\sokoban\sfml-test\src\game.cpp
+1620355256 source:c:\users\skyllilolz\desktop\studying\projet\sokoban aux2\sokoban\sfml-test\src\game.cpp
 	"Game.h"
 	"Level.h"
 	"cell.h"
+	"MainMenu.h"
 	"variables.h"
 	<bits/stdc++.h>
 	<SFML/Graphics.hpp>
 
-1620061450 c:\users\skyllilolz\desktop\studying\projet\sokoban aux2\sokoban\sfml-test\include\variables.h
+1620250486 c:\users\skyllilolz\desktop\studying\projet\sokoban aux2\sokoban\sfml-test\include\variables.h
+	"MainMenu.h"
 	"Game.h"
 	"Level.h"
 	"cell.h"
 	<bits/stdc++.h>
 	<SFML/Graphics.hpp>
 
-1620163036 source:c:\users\skyllilolz\desktop\studying\projet\sokoban aux2\sokoban\sfml-test\src\level.cpp
+1620345373 source:c:\users\skyllilolz\desktop\studying\projet\sokoban aux2\sokoban\sfml-test\src\level.cpp
 	"Level.h"
 	<fstream>
 	<bits/stdc++.h>
@@ -952,12 +954,12 @@
 	<bits/stdc++.h>
 	<game.h>
 
-1620174391 source:c:\users\skyllilolz\desktop\studying\projet\sokoban aux2\sokoban\sfml-test\src\mainmenu.cpp
+1620354894 source:c:\users\skyllilolz\desktop\studying\projet\sokoban aux2\sokoban\sfml-test\src\mainmenu.cpp
 	"MainMenu.h"
 	<bits/stdc++.h>
 	<SFML/Window/Event.hpp>
 
-1620171846 c:\users\skyllilolz\desktop\studying\projet\sokoban aux2\sokoban\sfml-test\include\mainmenu.h
+1620344598 c:\users\skyllilolz\desktop\studying\projet\sokoban aux2\sokoban\sfml-test\include\mainmenu.h
 	<memory>
 	<SFML/Graphics.hpp>
 
@@ -1067,4 +1069,9 @@
 	"ChooseLevel.h"
 
 1620323016 d:\desktop d\me\ensi\semestre2       2020-2021\projet\sfml-test\include\chooselevel.h
+
+1620344598 source:c:\users\skyllilolz\desktop\studying\projet\sokoban aux2\sokoban\sfml-test\src\chooselevel.cpp
+	"ChooseLevel.h"
+
+1620344598 c:\users\skyllilolz\desktop\studying\projet\sokoban aux2\sokoban\sfml-test\include\chooselevel.h
 

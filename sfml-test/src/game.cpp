@@ -244,11 +244,6 @@ void Game::render()
         window->display();
         break;
     }
-
-
-
-
-
 }
 
 
@@ -265,55 +260,82 @@ void Game::gameLoop()
             switch (status)
             {
             case 0://MM
-                switch (event.key.code)
-                {
-                case sf::Keyboard::Up:
-                {
-                    if (!MM.getPBS())
-                    {
-                        MM.setPBS(true);
-                        MM.setEBS(false);
-                    }
-                    break;
-                }
-                case sf::Keyboard::Down:
-                {
-                    if (!MM.getEBS())
-                    {
-                        MM.setPBS(false);
-                        MM.setEBS(true);
-                    }
-                    break;
-                }
-                case sf::Keyboard::Return:
-                {
-                    MM.setPBP(false);
-                    MM.setEBS(false);
-
+                if (event.type == sf::Event::KeyPressed)
+          {
+               if (event.key.code == sf::Keyboard::Up){
+		    cout<<"case 0: upped"<<endl;
                     if (MM.getPBS())
                     {
-                        MM.setPBP(true);
+                        cout<<"case 0: PBS"<<endl;
+                        MM.setPBS(false);
+                        MM.setHBS(false);
+                        MM.setEBS(true);
                     }
-                    else
+                    else if (MM.getHBS())
                     {
-                        MM.setEBP(true);
+                        cout<<"case 0: HBS"<<endl;
+                        MM.setPBS(true);
+                        MM.setHBS(false);
+                        MM.setEBS(false);
                     }
-
-                    break;
+                    else if (MM.getEBS())
+                    {
+                        cout<<"case 0: EBS"<<endl;
+                        MM.setPBS(false);
+                        MM.setHBS(true);
+                        MM.setEBS(false);
+                    }
                 }
-
-                }//end 2nd while
-
-                if(MM.getPBP())
+                if (event.key.code == sf::Keyboard::Down)
                 {
-                    status=1;
+                    cout<<"case 0: Down"<< endl;
+                    if (MM.getPBS())
+                    {
+                        cout<<"case 0: EBS"<< endl;
+                        MM.setPBS(false);
+                        MM.setHBS(true);
+                        MM.setEBS(false);
+                    }
+                    else if (MM.getHBS())
+                    {
+                        cout<<"case 0: HBS"<< endl;
+                        MM.setPBS(false);
+                        MM.setHBS(false);
+                        MM.setEBS(true);
+                    }
+                    else if (MM.getEBS())
+                    {
+                        cout<<"case 0: EBS"<< endl;
+                        MM.setPBS(true);
+                        MM.setHBS(false);
+                        MM.setEBS(false);
+                    }
                 }
-                else if(MM.getEBP())
-                {
+                if (event.key.code == sf::Keyboard::Return)
+                {   cout<<"case 0: return pressed" << endl;
+
+                    if (MM.getPBS())
+                    {   cout<<"case 0: PBS : Status =1"<<endl;
+                        status =1;
+                        cout<< "status = " << status;
+                        //MM.setPBP(true);
+                    }
+                    if(MM.getHBS())
+                    {
+                        cout<<"mafamesh help"<<endl;
+
+                }
+                    if(MM.getEBS())
+                    {
+                        cout<<"case 0: EBS :window will be closed"<<endl;
                     window->close();
                 }
-                break;
-
+                    MM.setPBS(false);
+                    MM.setHBS(false);
+                    MM.setEBS(false);
+                }
+            break;
+            cout<<status<<endl;
             case 1:
                 if (event.type == sf::Event::KeyPressed)
                 {
@@ -355,7 +377,7 @@ void Game::gameLoop()
 
                     }
                 }
-                break;
+    break;
             }
 
 
@@ -375,7 +397,7 @@ void Game::gameLoop()
         levelInitialiser();
         render();
 
-    }
+    }}
 }
 
 Game::~Game()

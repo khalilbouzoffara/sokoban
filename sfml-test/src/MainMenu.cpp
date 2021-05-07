@@ -188,18 +188,19 @@ void MainMenu::Update(sf::RenderWindow &m_window)/*sf::Time deltaTime*/
 {
     if(m_isPlayButtonSelected)
     {
-        m_playButton.setFillColor(sf::Color::Black);
+        m_playButton.setFillColor(sf::Color::Red);
+        m_HelpButton.setFillColor(sf::Color::White);
         m_exitButton.setFillColor(sf::Color::White);
     }
     else if (m_isExitButtonSelected)
-    {
-        m_exitButton.setFillColor(sf::Color::Black);
+    {   m_HelpButton.setFillColor(sf::Color::White);
+        m_exitButton.setFillColor(sf::Color::Red);
         m_playButton.setFillColor(sf::Color::White);
     }
     else if (m_isHelpButtonSelected){
         m_exitButton.setFillColor(sf::Color::White);
         m_playButton.setFillColor(sf::Color::White);
-        m_HelpButton.setFillColor(sf::Color::Black);
+        m_HelpButton.setFillColor(sf::Color::Red);
 
     }
 

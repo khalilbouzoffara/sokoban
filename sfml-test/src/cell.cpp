@@ -115,7 +115,14 @@ void cell::initialiser()
             }
             cellSprite.setTexture(cellTexture, true);
         }
-
+        else
+        {
+            if (!cellTexture.loadFromFile("textures/player/playerDown.png"))
+            {
+                std::cout << "error pour charger le joueur" << std::endl;
+            }
+            cellSprite.setTexture(cellTexture, true);
+        }
         break;
 
     case 5: // box_win
