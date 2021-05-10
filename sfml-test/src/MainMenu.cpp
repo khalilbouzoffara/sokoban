@@ -235,13 +235,3 @@ void MainMenu::Draw(sf::RenderWindow &m_window)
 }
 
 
-void MainMenu::MenuLoop(sf::RenderWindow &m_window)
-{
-    while (m_window.isOpen())
-    {
-        Init(m_window);
-        //ProcessInput(m_window);
-        Update(m_window);
-        Draw(m_window);
-    }
-}

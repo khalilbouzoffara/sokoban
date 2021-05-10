@@ -8,7 +8,7 @@
 
 class MainMenu
 {
-public:
+private:
 
     //sf::Text m_gameTitle;
     sf::Text m_playButton;
@@ -50,6 +50,5 @@ public:
     void ProcessInput(sf::RenderWindow &) ;
     void Update(sf::RenderWindow &) ;
     void Draw(sf::RenderWindow &) ;
-    void MenuLoop(sf::RenderWindow &);
 };
 #endif // MAINMENU_H

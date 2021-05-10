@@ -3,10 +3,12 @@
 #include "cell.h"
 #include "MainMenu.h"
 #include "variables.h"
+#include "Help.h"
+#include "LvlMenu.h"
 #include <bits/stdc++.h>
 #include <SFML/Graphics.hpp>
-#define HEIGHT 600
-#define WIDTH 850
+#define HEIGHT 850
+#define WIDTH 1000
 Game::Game()
 {
     //Initialiser Level and personnage
@@ -146,6 +148,10 @@ void Game::mainloopOnce(int n)
         testing(n);
         b=NombreDe_b();
     }
+    else
+    {
+        status=0;
+    }
 }
 
 void Game::gameInitaliser()
@@ -170,11 +176,11 @@ void Game::levelInitialiser()
     //Level lvl(6,10);
     //lvl.loadCarte();
 
-    int initialX = 10, initialY = 100;
+    int initialX = 10, initialY = 200;
 
     for (int i = 0; i <6; i++)
     {
-        initialX = 100;
+        initialX = 170;
         for (int j = 0; j <10; j++)
         {
             switch(lvl.getcarte()[i][j])
@@ -243,6 +249,12 @@ void Game::render()
         //Display
         window->display();
         break;
+    case 2://Help
+        H.drawHelp(*window);
+        break;
+    case 3://LvlMenu
+        LM.DrawIT(*window);
+        break;
     }
 }
 
@@ -261,82 +273,86 @@ void Game::gameLoop()
             {
             case 0://MM
                 if (event.type == sf::Event::KeyPressed)
-          {
-               if (event.key.code == sf::Keyboard::Up){
-		    cout<<"case 0: upped"<<endl;
-                    if (MM.getPBS())
-                    {
-                        cout<<"case 0: PBS"<<endl;
-                        MM.setPBS(false);
-                        MM.setHBS(false);
-                        MM.setEBS(true);
-                    }
-                    else if (MM.getHBS())
-                    {
-                        cout<<"case 0: HBS"<<endl;
-                        MM.setPBS(true);
-                        MM.setHBS(false);
-                        MM.setEBS(false);
-                    }
-                    else if (MM.getEBS())
-                    {
-                        cout<<"case 0: EBS"<<endl;
-                        MM.setPBS(false);
-                        MM.setHBS(true);
-                        MM.setEBS(false);
-                    }
-                }
-                if (event.key.code == sf::Keyboard::Down)
                 {
-                    cout<<"case 0: Down"<< endl;
-                    if (MM.getPBS())
+                    if (event.key.code == sf::Keyboard::Up)
                     {
-                        cout<<"case 0: EBS"<< endl;
-                        MM.setPBS(false);
-                        MM.setHBS(true);
-                        MM.setEBS(false);
+                        cout<<"case 0: upped"<<endl;
+                        if (MM.getPBS())
+                        {
+                            cout<<"case 0: PBS"<<endl;
+                            MM.setPBS(false);
+                            MM.setHBS(false);
+                            MM.setEBS(true);
+                        }
+                        else if (MM.getHBS())
+                        {
+                            cout<<"case 0: HBS"<<endl;
+                            MM.setPBS(true);
+                            MM.setHBS(false);
+                            MM.setEBS(false);
+                        }
+                        else if (MM.getEBS())
+                        {
+                            cout<<"case 0: EBS"<<endl;
+                            MM.setPBS(false);
+                            MM.setHBS(true);
+                            MM.setEBS(false);
+                        }
                     }
-                    else if (MM.getHBS())
+                    if (event.key.code == sf::Keyboard::Down)
                     {
-                        cout<<"case 0: HBS"<< endl;
-                        MM.setPBS(false);
-                        MM.setHBS(false);
-                        MM.setEBS(true);
+                        cout<<"case 0: Down"<< endl;
+                        if (MM.getPBS())
+                        {
+                            cout<<"case 0: EBS"<< endl;
+                            MM.setPBS(false);
+                            MM.setHBS(true);
+                            MM.setEBS(false);
+                        }
+                        else if (MM.getHBS())
+                        {
+                            cout<<"case 0: HBS"<< endl;
+                            MM.setPBS(false);
+                            MM.setHBS(false);
+                            MM.setEBS(true);
+                        }
+                        else if (MM.getEBS())
+                        {
+                            cout<<"case 0: EBS"<< endl;
+                            MM.setPBS(true);
+                            MM.setHBS(false);
+                            MM.setEBS(false);
+                        }
                     }
-                    else if (MM.getEBS())
+                    if (event.key.code == sf::Keyboard::Return)
                     {
-                        cout<<"case 0: EBS"<< endl;
+                        cout<<"case 0: return pressed" << endl;
+
+                        if (MM.getPBS())
+                        {
+                            cout<<"case 0: PBS : Status =1"<<endl;
+                            status =3;
+                            cout<< "status = " << status;
+                            //MM.setPBP(true);
+                        }
+                        if(MM.getHBS())
+                        {
+                            status=2;
+
+                        }
+                        if(MM.getEBS())
+                        {
+                            cout<<"case 0: EBS :window will be closed"<<endl;
+                            window->close();
+                        }
                         MM.setPBS(true);
                         MM.setHBS(false);
                         MM.setEBS(false);
                     }
+                    break;
+                    cout<<status<<endl;
                 }
-                if (event.key.code == sf::Keyboard::Return)
-                {   cout<<"case 0: return pressed" << endl;
-
-                    if (MM.getPBS())
-                    {   cout<<"case 0: PBS : Status =1"<<endl;
-                        status =1;
-                        cout<< "status = " << status;
-                        //MM.setPBP(true);
-                    }
-                    if(MM.getHBS())
-                    {
-                        cout<<"mafamesh help"<<endl;
-
-                }
-                    if(MM.getEBS())
-                    {
-                        cout<<"case 0: EBS :window will be closed"<<endl;
-                    window->close();
-                }
-                    MM.setPBS(false);
-                    MM.setHBS(false);
-                    MM.setEBS(false);
-                }
-            break;
-            cout<<status<<endl;
-            case 1:
+            case 1://game
                 if (event.type == sf::Event::KeyPressed)
                 {
                     if (event.key.code == sf::Keyboard::Up)
@@ -377,12 +393,45 @@ void Game::gameLoop()
 
                     }
                 }
-    break;
+                break;
+            case 3: //LvlMenu
+                if (event.type == sf::Event::KeyPressed)
+                {
+                    if (event.key.code == sf::Keyboard::Right)
+                    {
+                        int k=-1;
+                        for (int i=0; i<10; i++)
+                        {
+                            if(LM.getLvlS(i))
+                            {
+                                cout<<"case 0: PBS"<<i<<endl;
+                                //LM.setLvlS(i,false);
+                                //LM.setLvlS(i+1,true);
+                                k=i;
+                            }
+                        }
+                        LM.setLvlS(k,false);
+                        LM.setLvlS(k+1,true);
+                        k=-1;
+                    }
+                    else if (event.key.code == sf::Keyboard::Return)
+                    {
+                        for (int i=0; i<10; i++)
+                        {
+                            if(LM.getLvlS(i))
+                            {
+                                cout<<"level antriir"<<i<<endl;
+                                status=1;
+                            }
+                        }
+                    }
+                }
+
+
+
             }
 
-
-
-            if (event.type == sf::Event::Closed)
+            if (event.type == sf::Event::Closed || event.key.code == sf::Keyboard::Escape)
             {
                 window->close();
             }
@@ -397,8 +446,9 @@ void Game::gameLoop()
         levelInitialiser();
         render();
 
-    }}
+    }
 }
+
 
 Game::~Game()
 {

@@ -1,10 +1,12 @@
 # depslib dependency file v1.0
-1620237736 source:d:\desktop d\me\ensi\semestre2       2020-2021\projet\sfml-test\main.cpp
+1620661057 source:d:\desktop d\me\ensi\semestre2       2020-2021\projet\sfml-test\main.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	"MainMenu.h"
 	"Level.h"
 	"Game.h"
+	"Help.h"
+	"LvlMenu.h"
 
 1525812018 c:\program files\codeblocks\sfml\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
@@ -431,7 +433,7 @@
 1619794929 source:d:\desktop d\me\ensi\semestre2       2020-2021\projet\sfml-test\src\gameworld.cpp
 	"gameWorld.h"
 
-1620319073 source:d:\desktop d\me\ensi\semestre2       2020-2021\projet\sfml-test\src\cell.cpp
+1620688802 source:d:\desktop d\me\ensi\semestre2       2020-2021\projet\sfml-test\src\cell.cpp
 	"cell.h"
 	<bits/stdc++.h>
 	<SFML/Graphics.hpp>
@@ -449,12 +451,14 @@
 	<bits/stdc++.h>
 	<vector>
 
-1620320320 source:d:\desktop d\me\ensi\semestre2       2020-2021\projet\sfml-test\src\game.cpp
+1620689397 source:d:\desktop d\me\ensi\semestre2       2020-2021\projet\sfml-test\src\game.cpp
 	"Game.h"
 	"Level.h"
 	"cell.h"
 	"MainMenu.h"
 	"variables.h"
+	"Help.h"
+	"LvlMenu.h"
 	<bits/stdc++.h>
 	<SFML/Graphics.hpp>
 
@@ -464,11 +468,13 @@
 	<bits/stdc++.h>
 	<SFML/Graphics.hpp>
 
-1620247338 d:\desktop d\me\ensi\semestre2       2020-2021\projet\sfml-test\include\variables.h
+1620655696 d:\desktop d\me\ensi\semestre2       2020-2021\projet\sfml-test\include\variables.h
 	"MainMenu.h"
 	"Game.h"
 	"Level.h"
 	"cell.h"
+	"Help.h"
+	"LvlMenu.h"
 	<bits/stdc++.h>
 	<SFML/Graphics.hpp>
 
@@ -1038,7 +1044,7 @@
 	"Objet.h"
 	<bits/stdc++.h>
 
-1620344174 d:\desktop d\me\ensi\semestre2       2020-2021\projet\sfml-test\include\mainmenu.h
+1620391728 d:\desktop d\me\ensi\semestre2       2020-2021\projet\sfml-test\include\mainmenu.h
 	<memory>
 	<SFML/Graphics.hpp>
 
@@ -1050,7 +1056,7 @@
 1620175063 d:\desktop d\me\ensi\semestre2       2020-2021\projet\sfml-test\include\objet.h
 	<bits/stdc++.h>
 
-1620316250 source:d:\desktop d\me\ensi\semestre2       2020-2021\projet\sfml-test\src\mainmenu.cpp
+1620390635 source:d:\desktop d\me\ensi\semestre2       2020-2021\projet\sfml-test\src\mainmenu.cpp
 	"MainMenu.h"
 	<bits/stdc++.h>
 	<SFML/Window/Event.hpp>
@@ -1074,4 +1080,23 @@
 	"ChooseLevel.h"
 
 1620344598 c:\users\skyllilolz\desktop\studying\projet\sokoban aux2\sokoban\sfml-test\include\chooselevel.h
+
+1620392497 d:\desktop d\me\ensi\semestre2       2020-2021\projet\sfml-test\include\help.h
+	<bits/stdc++.h>
+	<SFML/Graphics.hpp>
+
+1620395721 source:d:\desktop d\me\ensi\semestre2       2020-2021\projet\sfml-test\src\help.cpp
+	"Help.h"
+	<bits/stdc++.h>
+	<SFML/Window/Event.hpp>
+	<SFML/Graphics.hpp>
+
+1620664508 d:\desktop d\me\ensi\semestre2       2020-2021\projet\sfml-test\include\lvlmenu.h
+	<SFML/Graphics.hpp>
+	<bits/stdc++.h>
+
+1620687542 source:d:\desktop d\me\ensi\semestre2       2020-2021\projet\sfml-test\src\lvlmenu.cpp
+	"LvlMenu.h"
+	<SFML/Graphics.hpp>
+	<bits/stdc++.h>
 

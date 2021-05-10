@@ -115,7 +115,8 @@ void cell::initialiser()
             }
             cellSprite.setTexture(cellTexture, true);
         }
-        else
+
+        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R))
         {
             if (!cellTexture.loadFromFile("textures/player/playerDown.png"))
             {
@@ -123,6 +124,7 @@ void cell::initialiser()
             }
             cellSprite.setTexture(cellTexture, true);
         }
+
         break;
 
     case 5: // box_win

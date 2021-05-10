@@ -50,7 +50,9 @@
 			<Add directory="C:/Users/skyllilolz/Desktop/Growth/SFML/SFML-2.5.1/lib" />
 		</Linker>
 		<Unit filename="include/ChooseLevel.h" />
+		<Unit filename="include/Help.h" />
 		<Unit filename="include/Level.h" />
+		<Unit filename="include/LvlMenu.h" />
 		<Unit filename="include/MainMenu.h" />
 		<Unit filename="include/Objet.h" />
 		<Unit filename="include/Personnage.h" />
@@ -59,7 +61,9 @@
 		<Unit filename="include/variables.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/ChooseLevel.cpp" />
+		<Unit filename="src/Help.cpp" />
 		<Unit filename="src/Level.cpp" />
+		<Unit filename="src/LvlMenu.cpp" />
 		<Unit filename="src/MainMenu.cpp" />
 		<Unit filename="src/Objet.cpp" />
 		<Unit filename="src/Personnage.cpp" />
