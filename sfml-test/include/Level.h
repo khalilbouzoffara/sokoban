@@ -9,8 +9,10 @@ class Level
 {
     public:
         Level();
+        int getrow();
+        int getcol();
         Level(int,int);
-        void loadCarte();
+        void loadCarte(int);
         std::vector<std::vector<int>> getcarte();
         void affichageCarte();
         virtual ~Level();

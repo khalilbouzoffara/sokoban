@@ -40,7 +40,7 @@ void Help::initHelp(sf::RenderWindow &win)
 
 void Help::drawHelp(sf::RenderWindow &win)
 {
-    initHelp(win);
+   // initHelp(win);
     sf::Vector2u TextureSize;  //Added to store texture size.
     sf::Vector2u WindowSize;   //Added to store window size.
 
@@ -50,11 +50,11 @@ void Help::drawHelp(sf::RenderWindow &win)
     sf::Texture rule3;
 
 
-    BG.loadFromFile("textures/bgg.jpg");
+    //BG.loadFromFile("textures/bgg.jpg");
     rule1.loadFromFile("textures/rules/rule01.gif");
     rule2.loadFromFile("textures/rules/rule02.gif");
     rule3.loadFromFile("textures/rules/rule03.gif");
-
+    BG.loadFromFile("textures/rules/i01_Help.jpg");
 
     sf::Sprite spriteBG(BG);
     sf::Sprite spriteRule1(rule1);
@@ -84,12 +84,12 @@ void Help::drawHelp(sf::RenderWindow &win)
 
     win.clear(sf::Color::White);
     win.draw(spriteBG);
-    win.draw(spriteRule1);
-    win.draw(spriteRule2);
-    win.draw(spriteRule3);
-    win.draw(text1);
-    win.draw(text2);
-    win.draw(text3);
+//    win.draw(spriteRule1);
+//    win.draw(spriteRule2);
+//    win.draw(spriteRule3);
+//    win.draw(text1);
+//    win.draw(text2);
+//    win.draw(text3);
     win.display();
 
 

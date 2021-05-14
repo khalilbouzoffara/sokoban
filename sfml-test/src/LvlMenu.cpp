@@ -109,7 +109,7 @@ void LvlMenu::DrawIT(sf::RenderWindow &win)
     sf::Vector2u TextureSize;  //Added to store texture size.
     sf::Vector2u WindowSize;   //Added to store window size.
     sf::Texture t;
-    t.loadFromFile("textures/menu2.png");
+    t.loadFromFile("textures/menu2test.png");
     sf::Sprite s(t);
     TextureSize = t.getSize(); //Get size of texture.
     WindowSize = win.getSize();             //Get size of window.

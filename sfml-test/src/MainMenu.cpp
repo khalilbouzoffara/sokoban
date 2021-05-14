@@ -226,12 +226,21 @@ void MainMenu::Draw(sf::RenderWindow &m_window)
     s.setTexture(t);
     s.setScale(ScaleX, ScaleY);      //Set scale
     m_window.clear(sf::Color::White);
+
     m_window.draw(s);
+
     //m_window->draw(m_gameTitle);
+
+     m_window.draw(m_HelpButton);
+
     m_window.draw(m_playButton);
+
     m_window.draw(m_HelpButton);
+
     m_window.draw(m_exitButton);
+
     m_window.display();
+
 }
 
 

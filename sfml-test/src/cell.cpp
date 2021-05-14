@@ -43,6 +43,7 @@ void cell::setType(int t)
 
 void cell::initialiser()
 {
+
     switch (typeCell)
     {
     case 0: // space
@@ -90,6 +91,9 @@ void cell::initialiser()
                 std::cout << "error pour charger le joueur" << std::endl;
             }
             cellSprite.setTexture(cellTexture, true);
+
+            memoir=4;
+
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         {
@@ -98,6 +102,7 @@ void cell::initialiser()
                 std::cout << "error pour charger le joueur" << std::endl;
             }
             cellSprite.setTexture(cellTexture, true);
+            memoir=6;
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         {
@@ -106,6 +111,7 @@ void cell::initialiser()
                 std::cout << "error pour charger le joueur" << std::endl;
             }
             cellSprite.setTexture(cellTexture, true);
+             memoir=5;
         }
         else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         {
@@ -114,6 +120,7 @@ void cell::initialiser()
                 std::cout << "error pour charger le joueur" << std::endl;
             }
             cellSprite.setTexture(cellTexture, true);
+             memoir=8;
         }
 
         else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R))
@@ -123,6 +130,35 @@ void cell::initialiser()
                 std::cout << "error pour charger le joueur" << std::endl;
             }
             cellSprite.setTexture(cellTexture, true);
+             memoir=5;
+        }
+          else
+        {   if (memoir==5){
+            if (!cellTexture.loadFromFile("textures/player/playerDown.png"))
+            {
+                std::cout << "error pour charger le joueur" << std::endl;
+            }
+            cellSprite.setTexture(cellTexture, true);
+        }
+        else if (memoir==8){
+            if (!cellTexture.loadFromFile("textures/player/playerUp.png"))
+            {
+                std::cout << "error pour charger le joueur" << std::endl;
+            }
+            cellSprite.setTexture(cellTexture, true);
+        }else if (memoir==4){
+            if (!cellTexture.loadFromFile("textures/player/playerLeft.png"))
+            {
+                std::cout << "error pour charger le joueur" << std::endl;
+            }
+            cellSprite.setTexture(cellTexture, true);
+        }else if (memoir==6){
+            if (!cellTexture.loadFromFile("textures/player/playerRight.png"))
+            {
+                std::cout << "error pour charger le joueur" << std::endl;
+            }
+            cellSprite.setTexture(cellTexture, true);
+        }
         }
 
         break;
@@ -136,8 +172,8 @@ void cell::initialiser()
 
         break;
     }
-}
 
+}
 cell::tile cell::getType()
 {
     return typeCell;

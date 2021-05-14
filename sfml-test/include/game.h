@@ -2,7 +2,6 @@
 #define GAME_H
 #include "Personnage.h"
 #include "Level.h"
-
 #include <bits/stdc++.h>
 #include <SFML/Graphics.hpp>
 
@@ -12,6 +11,7 @@ class Game
     public:
         Game(); //Constructor
         Game(Level); //and another one
+         void levelInitialiser(int);
         void gameInitaliser(); //Background initialiser
         void levelInitialiser(); //Grahpical map update
         void render();
@@ -26,6 +26,8 @@ class Game
         RenderWindow *window;
         Level lvl;
         Personnage p;
+        bool nextPressed=true;
+        bool RetourPressed=false;
 };
 
 #endif // GAME_H

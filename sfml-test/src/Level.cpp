@@ -14,11 +14,22 @@ Level::Level(int jrow, int jcol)
     col=jcol;
 }
 
-void Level::loadCarte()
-{
+Level::getrow(){
+    return carte.size();
+}
+Level::getcol(){
+    return carte[0].size();
+}
+
+void Level::loadCarte(int n)
+
+{   //FIRST THINGS FIRST CLEAR THE CARTE VARIABLE OF ANY PUSHED BACK STUFF
+    carte.clear();
+    //string
+    string s=".\\Levels\\" + to_string(n) + ".txt";
     //opening text file
     ifstream inFile;
-    inFile.open(".\\Levels\\Level Example1.txt");
+    inFile.open(s);
     //Verif file was opened
     if (!inFile)
     {
@@ -67,13 +78,37 @@ void Level::loadCarte()
     inFile.close();
 }
 
+
+
 void Level::affichageCarte()
-{
-    for (int i = 0; i < row; i++) {
-        for (int j = 0; j < col; j++)
-            cout << carte[i][j] << " ";
+{   cout<<"*************ONE MAP***************"<<endl;
+    for (int i = 0; i < carte.size(); i++) {
+        for (int j = 0; j < carte[0].size(); j++){
+            switch (carte[i][j])
+            {
+            case 0:
+               cout << ". " ;
+                break;
+            case 1:
+               cout << "# ";
+                break;
+            case 2:
+                cout << "d ";
+                break;
+            case 3:
+                cout << "b ";
+                break;
+            case 4:
+                cout << "J ";
+                break;
+            case 5:
+                cout << "B ";
+                break;
+            }
+        }
         cout << endl;
     }
+    cout<<"**************ONE MAP****************"<<endl;
 }
 
 void Level::setcarte(vector<vector<int>> _){

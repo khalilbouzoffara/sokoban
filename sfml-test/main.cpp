@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-#include <iostream>
+#include <bits/stdc++.h>
 #include "MainMenu.h"
 #define HEIGHT 850
 #define WIDTH 1000

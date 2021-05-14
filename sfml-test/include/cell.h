@@ -1,7 +1,7 @@
 #ifndef CELL_H
 #define CELL_H
 #include <SFML/Graphics.hpp>
-
+extern int memoir;
 class cell
 {
     private:
@@ -15,7 +15,8 @@ class cell
         tile getType();
         void setType(int);
         void setPosition(int,int);
-        void initialiser();
+         void initialiser();
+        void initialiser(int);
         void draw(sf::RenderWindow&);
         sf::Vector2f getPosition();
         virtual ~cell();

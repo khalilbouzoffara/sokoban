@@ -20,4 +20,6 @@ MainMenu MM;
 LvlMenu LM;
 Help H;
 int status=0;
+int memoir=5;
+int lvlNumber=1;
 #endif // VARIABLES_H

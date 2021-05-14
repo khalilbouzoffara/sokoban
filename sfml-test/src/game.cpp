@@ -7,17 +7,16 @@
 #include "LvlMenu.h"
 #include <bits/stdc++.h>
 #include <SFML/Graphics.hpp>
-#define HEIGHT 850
-#define WIDTH 1000
+#define HEIGHT 600
+#define WIDTH 850
 Game::Game()
 {
     //Initialiser Level and personnage
     Level l;
-    l.loadCarte();
+    l.loadCarte(1);
     Personnage _(lvl);
     p=_;
     p.setindestination(false);
-    //cout<<"bouhou"<<endl;
     p.debug();
     lvl=l;
 
@@ -46,7 +45,7 @@ void Game::testing(int n)
 {
 //    for (int i = 0; i < lvl.getcarte().size(); i++) {
 //    cout << lvl.getcarte()[i][0] << " ";
-    cout << "we entered testingv1"<<endl;
+//    cout << "we entered testingv1"<<endl;
 //    }
 //    p.debug();
     //lvl.loadcarte();
@@ -55,13 +54,17 @@ void Game::testing(int n)
     Personnage g(lvl);
     p=g;
     p.setindestination(b);
-    cout << "we entered testingv2"<<endl;
+    //  cout << "we entered testingv2"<<endl;
     p.debug();
     //lvl.affichagecarte();
     vector<vector<int>> testmap;
     //testmap is the matrix you can use as an example while working,
     // it the the representation of level Example1.txt in a vector<vector<char>>
+    //lvl.loadCarte basically updates the variable carte to our level
     testmap=lvl.getcarte();
+    cout<< lvlNumber<<endl;
+    cout<<"The testing function's affichage carte" << endl;
+//    lvl.affichageCarte();
     //Personnage p(lvl);
     // p.debug();
     //***********************
@@ -86,18 +89,9 @@ void Game::testing(int n)
         p.right(testmap);
         break;
     }
-    //**************************************
-
     cout << endl;
-
     lvl.setcarte(testmap);
-
-    //lvl.affichageCarte();   // This seriously invoked a bug
-
-
     p.debug();
-
-
 }
 
 int Game::NombreDe_b()
@@ -122,7 +116,7 @@ void Game::mainloop(int n)
     char s;
     s='.';
     p.setindestination(false);
-    lvl.affichageCarte();
+    //lvl.affichageCarte();
     int b ;
     b=NombreDe_b() ;
     cout<< b ;
@@ -137,11 +131,9 @@ void Game::mainloopOnce(int n)
 {
     char s;
     s='.';
-//p.setindestination(false);     //************
-//lvl.affichageCarte();
     int b ;
     b=NombreDe_b() ;
-    cout<< b ;
+    cout<< b <<endl;
 
     if (b>0)
     {
@@ -150,7 +142,7 @@ void Game::mainloopOnce(int n)
     }
     else
     {
-        status=0;
+        status=4;
     }
 }
 
@@ -161,26 +153,16 @@ void Game::gameInitaliser()
     gameBG.setFillColor(background);
     gameBG.setPosition(0, 0);
     gameBG.setSize(Vector2f(WIDTH, HEIGHT));
-    //Initialise Personnage Gamecmd and Level vars.
-//        cout << "Hello world!" << endl;
-//        lvl.loadcarte();
-//        Gamecmd G(lvl);
-//        G.setLevel(lvl);
-    //G.mainloopOnce();
-    //G();
 }
 
 void Game::levelInitialiser()
 {
-    //G.mainloopOnce();
-    //Level lvl(6,10);
-    //lvl.loadCarte();
 
-    int initialX = 10, initialY = 200;
+    int initialX = 10, initialY = 100;
 
     for (int i = 0; i <6; i++)
     {
-        initialX = 170;
+        initialX = 100;
         for (int j = 0; j <10; j++)
         {
             switch(lvl.getcarte()[i][j])
@@ -237,11 +219,12 @@ void Game::render()
         //render cycle
         window->clear();
         //render objects
-
+        //  cout<<"still drawing case 1" <<endl;
         window->draw(gameBG);
-        for (int i = 0; i < 6; i++)
+
+        for (int i = 0; i < lvl.getrow(); i++)
         {
-            for (int j = 0; j < 10; j++)
+            for (int j = 0; j < lvl.getcol(); j++)
             {
                 mapA[i][j].draw(*window);
             }
@@ -250,11 +233,13 @@ void Game::render()
         window->display();
         break;
     case 2://Help
+        window->clear();
         H.drawHelp(*window);
         break;
     case 3://LvlMenu
         LM.DrawIT(*window);
         break;
+
     }
 }
 
@@ -353,6 +338,13 @@ void Game::gameLoop()
                     cout<<status<<endl;
                 }
             case 1://game
+                int b;
+                b=NombreDe_b() ;
+                cout<< b <<endl;
+                if (b==0)
+                {   cout<<"d5al"<<endl;
+                   status=4;
+                }
                 if (event.type == sf::Event::KeyPressed)
                 {
                     if (event.key.code == sf::Keyboard::Up)
@@ -383,13 +375,15 @@ void Game::gameLoop()
                         cout<<"R" << endl;
 
                         Level l;
-                        l.loadCarte();
-                        Personnage _(lvl);
+                        l.loadCarte(lvlNumber);
+                        Personnage _(l);
                         p=_;
                         p.setindestination(false);
                         //cout<<"bouhou"<<endl;
                         p.debug();
+
                         lvl=l;
+                        lvl.affichageCarte();
 
                     }
                 }
@@ -410,38 +404,164 @@ void Game::gameLoop()
                                 k=i;
                             }
                         }
-                        LM.setLvlS(k,false);
-                        LM.setLvlS(k+1,true);
-                        k=-1;
-                    }
-                    else if (event.key.code == sf::Keyboard::Return)
-                    {
-                        for (int i=0; i<10; i++)
+                        //setting the color right on which level is chosen
+                        if (k<9)
                         {
-                            if(LM.getLvlS(i))
+                            LM.setLvlS(k,false);
+                            LM.setLvlS(k+1,true);
+                        }
+                        else
+                        {
+                            LM.setLvlS(9,false);
+                            LM.setLvlS(0,true);
+                        }
+
+                        //change Level
+                        if (lvlNumber<10)
+                        {
+                            lvlNumber++;
+                        }
+                        else lvlNumber=1;
+                        cout<<"lvl Number: "<< lvlNumber<< endl;
+                    }
+                    if (event.key.code == sf::Keyboard::Return)
+                    {
+                        status=1;
+                        Level l;
+                        l.loadCarte(lvlNumber);
+                        Personnage _(l);
+                        p=_;
+                        p.setindestination(false);
+                        p.debug();
+                        lvl=l;
+                        memoir=5;
+                    }
+
+                }
+                break;
+            case 4:
+//                int b;
+//                b=NombreDe_b() ;
+//                cout<< b <<endl;
+//                if (b==0)
+//                {   cout<<"d5al"<<endl;
+//                    mainloopOnce(8);
+//                    mainloopOnce(4);
+//                     mainloopOnce(5);
+//                }
+                sf::Text next;
+                sf::Text retourn;
+
+                sf::Font font ;
+                if (event.type == sf::Event::KeyPressed)
+                {
+                    cout<<"suckiit" ;
+
+
+                    if (event.key.code == sf::Keyboard::Right)
+                    {
+                        if(!nextPressed)
+                        {
+                            nextPressed=true;
+                            RetourPressed=false;
+                        }
+                    }
+                    if (event.key.code == sf::Keyboard::Left)
+                    {
+                        if(!RetourPressed)
+                        {
+                            nextPressed=false;
+                            RetourPressed=true;
+                        }
+                    }
+                    if (event.key.code == sf::Keyboard::Return)
+                    {
+                        if (nextPressed)
+                        {
+                            if (lvlNumber<10)
                             {
-                                cout<<"level antriir"<<i<<endl;
-                                status=1;
+                                lvlNumber++;
                             }
+                            else lvlNumber=1;
+                            status=1;
+                            Level l;
+                            l.loadCarte(lvlNumber);
+                            Personnage _(l);
+                            p=_;
+                            p.setindestination(false);
+                            p.debug();
+                            lvl=l;
+                            memoir=5;
+
+                        }
+                        if (RetourPressed)
+                        {
+                            status=3;
+
                         }
                     }
                 }
+                if (!font.loadFromFile("textures/Pacifico-Regular .ttf"))
+                {
+                    std::cout<<"error" ;
+                }
+                // next button
+                next.setFont(font);
+                next.setString("Next");
+                next.setOrigin(next.getLocalBounds().width / 2,
+                               next.getLocalBounds().height / 2);
+                next.setPosition(window->getSize().x -100.f,
+                                 window->getSize().y -100.f);
+                next.setCharacterSize(44);
+
+                //retour Button
+                retourn.setFont(font);
+                retourn.setString("Retour");
+                retourn.setOrigin(retourn.getLocalBounds().width / 2,
+                                  retourn.getLocalBounds().height / 2);
+                retourn.setPosition(100,
+                                    window->getSize().y -100.f);
+                retourn.setCharacterSize(44);
+                //Change colour
+                if(nextPressed)
+                {
+                    next.setFillColor(sf::Color::Red);
+                    retourn.setFillColor(sf::Color::White);
+
+                }
+                else if (RetourPressed)
+                {
+                    next.setFillColor(sf::Color::White);
+                    retourn.setFillColor(sf::Color::Red);
+                }
+
+                //Draw
+
+                cout<<"drawing 4"<<endl;
+                sf::Texture t;
+                t.loadFromFile("textures/win.png");
+                sf::Sprite s(t);
+                s.setTexture(t);
+                s.setOrigin(next.getLocalBounds().width / 2,
+                            s.getLocalBounds().height / 2);
+                s.setPosition(window->getSize().x/2-275, window->getSize().y/2-60);
+                window->draw(s);
+                window->draw(next);
+                window->draw(retourn);
+                window->display();
 
 
 
+                //bracket of switch ending
             }
+            break;
 
             if (event.type == sf::Event::Closed || event.key.code == sf::Keyboard::Escape)
             {
                 window->close();
             }
-
-
-
-
-
-
         }
+
         //update scene
         levelInitialiser();
         render();
