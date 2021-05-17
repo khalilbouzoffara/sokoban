@@ -14,9 +14,8 @@ public:
 
 
 private:
-    sf::Text text1;
-    sf::Text text2;
-    sf::Text text3;
+    //sf::Text t;
+    //sf::Text RETOURBUTTON;
     sf::Font font ;
 };
 

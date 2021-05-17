@@ -14,7 +14,8 @@
 // notre carte
 cell mapA[6][10];
 
-RectangleShape gameBG;
+sf::Texture gameBG;
+
 
 MainMenu MM;
 LvlMenu LM;

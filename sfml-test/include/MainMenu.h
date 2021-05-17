@@ -10,7 +10,7 @@ class MainMenu
 {
 private:
 
-    //sf::Text m_gameTitle;
+    sf::Text m_gameTitle;
     sf::Text m_playButton;
     sf::Text m_HelpButton;
     sf::Text m_exitButton;

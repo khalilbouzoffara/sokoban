@@ -91,12 +91,12 @@ void LvlMenu::ChangeLevelColor(sf::RenderWindow &win)
     if(k>0)
     {
         niveau[k-1].setFillColor(sf::Color::White);
-        niveau[k].setFillColor(sf::Color::Red);
+        niveau[k].setFillColor(sf::Color::Green);
     }
     else
     {
         niveau[9].setFillColor(sf::Color::White);
-        niveau[0].setFillColor(sf::Color::Red);
+        niveau[0].setFillColor(sf::Color::Green);
     }
     k=-1;
 }
@@ -111,6 +111,22 @@ void LvlMenu::DrawIT(sf::RenderWindow &win)
     sf::Texture t;
     t.loadFromFile("textures/menu2test.png");
     sf::Sprite s(t);
+
+    sf::Text txt;
+    sf::Font font ;
+    if (!font.loadFromFile("textures/Bokka Solid Regular.otf"))
+    {
+        std::cout<<"error" ;
+    }
+    txt.setFont(font);
+    txt.setString("LEVELS");
+    txt.setOrigin(txt.getLocalBounds().width / 2,
+                          txt.getLocalBounds().height / 2);
+    txt.setPosition(win.getSize().x / 2-67,
+                            win.getSize().y / 2 - 250.f);
+    txt.setCharacterSize(70);
+
+
     TextureSize = t.getSize(); //Get size of texture.
     WindowSize = win.getSize();             //Get size of window.
 
@@ -121,6 +137,8 @@ void LvlMenu::DrawIT(sf::RenderWindow &win)
     s.setScale(ScaleX, ScaleY);      //Set scale
     win.clear();
     win.draw(s);
+    win.draw(txt);
+
     for ( int i=0 ; i<10 ; i++)
     {
 

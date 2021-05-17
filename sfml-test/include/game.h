@@ -12,7 +12,7 @@ class Game
         Game(); //Constructor
         Game(Level); //and another one
          void levelInitialiser(int);
-        void gameInitaliser(); //Background initialiser
+        void gameInitaliser(sf::RenderWindow &); //Background initialiser
         void levelInitialiser(); //Grahpical map update
         void render();
         void gameLoop();      //Window opened and drawing Graphical carte as well as key pressors

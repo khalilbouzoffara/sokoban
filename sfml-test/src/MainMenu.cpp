@@ -74,17 +74,19 @@ void MainMenu::setHBS(bool t)
 }
 void MainMenu::Init(sf::RenderWindow &m_window)
 {
-    if (!font.loadFromFile("textures/Pacifico-Regular .ttf"))
+    if (!font.loadFromFile("textures/Bokka Solid Regular.otf"))
     {
         std::cout<<"error" ;
     }
-    /* Title
+    //Title
     m_gameTitle.setFont(font);
-    m_gameTitle.setString("Sokoban Game");
+    m_gameTitle.setString("SOKOBAN");
     m_gameTitle.setOrigin(m_gameTitle.getLocalBounds().width / 2,
                           m_gameTitle.getLocalBounds().height / 2);
-    m_gameTitle.setPosition(m_window->getSize().x / 2,
-                            m_window->getSize().y / 2 - 150.f);*/
+    m_gameTitle.setPosition(m_window.getSize().x / 2,
+                            m_window.getSize().y / 2 - 230.f);
+    m_gameTitle.setCharacterSize(80);
+
 
     // Play Button
     m_playButton.setFont(font);
@@ -188,19 +190,19 @@ void MainMenu::Update(sf::RenderWindow &m_window)/*sf::Time deltaTime*/
 {
     if(m_isPlayButtonSelected)
     {
-        m_playButton.setFillColor(sf::Color::Red);
+        m_playButton.setFillColor(sf::Color::Black);
         m_HelpButton.setFillColor(sf::Color::White);
         m_exitButton.setFillColor(sf::Color::White);
     }
     else if (m_isExitButtonSelected)
     {   m_HelpButton.setFillColor(sf::Color::White);
-        m_exitButton.setFillColor(sf::Color::Red);
+        m_exitButton.setFillColor(sf::Color::Black);
         m_playButton.setFillColor(sf::Color::White);
     }
     else if (m_isHelpButtonSelected){
         m_exitButton.setFillColor(sf::Color::White);
         m_playButton.setFillColor(sf::Color::White);
-        m_HelpButton.setFillColor(sf::Color::Red);
+        m_HelpButton.setFillColor(sf::Color::Black);
 
     }
 
@@ -215,7 +217,7 @@ void MainMenu::Draw(sf::RenderWindow &m_window)
     sf::Vector2u TextureSize;  //Added to store texture size.
     sf::Vector2u WindowSize;   //Added to store window size.
     sf::Texture t;
-    t.loadFromFile("textures/bgg.jpg");
+    t.loadFromFile("textures/wood3.png");
     sf::Sprite s(t);
     TextureSize = t.getSize(); //Get size of texture.
     WindowSize = m_window.getSize();             //Get size of window.
@@ -229,7 +231,7 @@ void MainMenu::Draw(sf::RenderWindow &m_window)
 
     m_window.draw(s);
 
-    //m_window->draw(m_gameTitle);
+    m_window.draw(m_gameTitle);
 
      m_window.draw(m_HelpButton);
 

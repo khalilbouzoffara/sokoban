@@ -22,7 +22,8 @@ Game::Game()
 
     //open window
     window = new RenderWindow(VideoMode(WIDTH, HEIGHT), "Sokoban");
-    gameInitaliser();
+    window->setFramerateLimit(60);
+    //gameInitaliser();
     levelInitialiser();
 
 
@@ -146,13 +147,32 @@ void Game::mainloopOnce(int n)
     }
 }
 
-void Game::gameInitaliser()
+void Game::gameInitaliser(sf::RenderWindow &win)
 {
-    //Game background
-    Color background(47, 75, 110);
+    /*Game background
+    Color background(233,178,121);
     gameBG.setFillColor(background);
     gameBG.setPosition(0, 0);
-    gameBG.setSize(Vector2f(WIDTH, HEIGHT));
+    gameBG.setSize(Vector2f(WIDTH, HEIGHT));*/
+
+
+        //render objects
+        //  cout<<"still drawing case 1" <<endl;
+    sf::Vector2u TextureSize;  //Added to store texture size.
+    sf::Vector2u WindowSize;
+    sf::Sprite bak(gameBG); //Added to store window size
+    gameBG.loadFromFile("textures/back.png");
+    TextureSize = gameBG.getSize(); //Get size of texture.
+    WindowSize = window->getSize();             //Get size of window.
+
+    float ScaleX = (float) WindowSize.x / TextureSize.x;
+    float ScaleY = (float) WindowSize.y / TextureSize.y;     //Calculate scale.
+
+    bak.setTexture(gameBG);
+    bak.setScale(ScaleX, ScaleY); //Set scale
+    cout<<"bgg";
+    win.draw(bak);
+
 }
 
 void Game::levelInitialiser()
@@ -217,10 +237,9 @@ void Game::render()
         break;
     case 1://game
         //render cycle
-        window->clear();
-        //render objects
-        //  cout<<"still drawing case 1" <<endl;
-        window->draw(gameBG);
+        {window->clear();
+
+        gameInitaliser(*window);
 
         for (int i = 0; i < lvl.getrow(); i++)
         {
@@ -231,7 +250,7 @@ void Game::render()
         }
         //Display
         window->display();
-        break;
+        break;}
     case 2://Help
         window->clear();
         H.drawHelp(*window);
@@ -439,7 +458,7 @@ void Game::gameLoop()
 
                 }
                 break;
-            case 4:
+            case 4://Level end
 //                int b;
 //                b=NombreDe_b() ;
 //                cout<< b <<endl;
@@ -449,7 +468,7 @@ void Game::gameLoop()
 //                    mainloopOnce(4);
 //                     mainloopOnce(5);
 //                }
-                sf::Text next;
+                {sf::Text next;
                 sf::Text retourn;
 
                 sf::Font font ;
@@ -501,7 +520,7 @@ void Game::gameLoop()
                         }
                     }
                 }
-                if (!font.loadFromFile("textures/Pacifico-Regular .ttf"))
+                if (!font.loadFromFile("textures/Bokka Solid Regular.otf"))
                 {
                     std::cout<<"error" ;
                 }
@@ -510,51 +529,73 @@ void Game::gameLoop()
                 next.setString("Next");
                 next.setOrigin(next.getLocalBounds().width / 2,
                                next.getLocalBounds().height / 2);
-                next.setPosition(window->getSize().x -100.f,
-                                 window->getSize().y -100.f);
-                next.setCharacterSize(44);
+                next.setPosition(window->getSize().x -78.f,
+                                 window->getSize().y -75.f);
+                next.setCharacterSize(33);
 
                 //retour Button
                 retourn.setFont(font);
-                retourn.setString("Retour");
+                retourn.setString("Return");
                 retourn.setOrigin(retourn.getLocalBounds().width / 2,
                                   retourn.getLocalBounds().height / 2);
-                retourn.setPosition(100,
-                                    window->getSize().y -100.f);
-                retourn.setCharacterSize(44);
+                retourn.setPosition(85,
+                                    window->getSize().y -75.f);
+                retourn.setCharacterSize(27);
                 //Change colour
                 if(nextPressed)
                 {
-                    next.setFillColor(sf::Color::Red);
+                    next.setFillColor(sf::Color::Cyan);
                     retourn.setFillColor(sf::Color::White);
 
                 }
                 else if (RetourPressed)
                 {
                     next.setFillColor(sf::Color::White);
-                    retourn.setFillColor(sf::Color::Red);
+                    retourn.setFillColor(sf::Color::Cyan);
                 }
 
                 //Draw
 
                 cout<<"drawing 4"<<endl;
                 sf::Texture t;
+                sf::Texture taswira1;
+                sf::Texture taswira2;
+                taswira1.loadFromFile("textures/&é.png");
+                taswira2.loadFromFile("textures/zere.png");
                 t.loadFromFile("textures/win.png");
                 sf::Sprite s(t);
-                s.setTexture(t);
+                sf::Sprite s1(taswira1);
+                s1.setTexture(taswira1);
+                sf::Sprite s2(taswira2);
+                s2.setTexture(taswira2);
                 s.setOrigin(next.getLocalBounds().width / 2,
                             s.getLocalBounds().height / 2);
-                s.setPosition(window->getSize().x/2-275, window->getSize().y/2-60);
-                window->draw(s);
+                //s1.setOrigin(next.getLocalBounds().width /2,
+                            //s.getLocalBounds().height/2 );
+                //s2.setOrigin(next.getLocalBounds().width / 2,
+                            //s.getLocalBounds().height / 2);
+                s.setPosition(window->getSize().x/2-250, window->getSize().y/2-100);
+                s1.setPosition(window->getSize().x/2-110, window->getSize().y/2-135);
+                s2.setPosition(-105, window->getSize().y/2-135);
+
+                window->draw(s2);
+                window->draw(s1);
+               // window->draw(s);
                 window->draw(next);
                 window->draw(retourn);
                 window->display();
+                break;}
+        case 2:
+                if (event.type == sf::Event::KeyPressed)
+                {
+                    if (event.key.code == sf::Keyboard::Return)
+                    status=0;
 
-
-
-                //bracket of switch ending
+                }
+   //bracket of switch ending
             }
             break;
+
 
             if (event.type == sf::Event::Closed || event.key.code == sf::Keyboard::Escape)
             {
