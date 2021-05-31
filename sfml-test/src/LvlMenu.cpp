@@ -61,9 +61,9 @@ void LvlMenu::Remplir(sf::RenderWindow &win)
         niveau[i].setFont(font);
         niveau[i].setString(s);
         niveau[i].setOrigin( niveau[i].getLocalBounds().width / 2, niveau[i].getLocalBounds().height / 2);
-        niveau[i].setPosition(win.getSize().x / 5 + j +40.f, win.getSize().y / 3*p -15.f);
+        niveau[i].setPosition(win.getSize().x / 5 + j +30.f, win.getSize().y / 3*p -15.f);
         niveau[i].setCharacterSize(44);
-        j+=140;
+        j+=120;
 
 
         if (i==4)
@@ -88,16 +88,11 @@ void LvlMenu::ChangeLevelColor(sf::RenderWindow &win)
         }
 
     }
-    if(k>0)
-    {
-        niveau[k-1].setFillColor(sf::Color::White);
-        niveau[k].setFillColor(sf::Color::Green);
-    }
-    else
-    {
-        niveau[9].setFillColor(sf::Color::White);
-        niveau[0].setFillColor(sf::Color::Green);
-    }
+         niveau[k].setFillColor(sf::Color::Black);
+         for (int i=0;i<10;i++)
+         {
+             if (i!=k ) { niveau[i].setFillColor(sf::Color::White);}
+         }
     k=-1;
 }
 
@@ -109,10 +104,13 @@ void LvlMenu::DrawIT(sf::RenderWindow &win)
     sf::Vector2u TextureSize;  //Added to store texture size.
     sf::Vector2u WindowSize;   //Added to store window size.
     sf::Texture t;
-    t.loadFromFile("textures/menu2test.png");
+    t.loadFromFile("textures/menu222.png");
     sf::Sprite s(t);
 
     sf::Text txt;
+    sf::Text esp;
+
+
     sf::Font font ;
     if (!font.loadFromFile("textures/Bokka Solid Regular.otf"))
     {
@@ -126,6 +124,12 @@ void LvlMenu::DrawIT(sf::RenderWindow &win)
                             win.getSize().y / 2 - 250.f);
     txt.setCharacterSize(70);
 
+    esp.setFont(font);
+    esp.setString("Esc");
+    esp.setOrigin(esp.getLocalBounds().width / 2,esp.getLocalBounds().height / 2);
+    esp.setPosition(win.getSize().x / 2 +00.f,win.getSize().y / 2 + 205.f);
+    esp.setCharacterSize(35);
+
 
     TextureSize = t.getSize(); //Get size of texture.
     WindowSize = win.getSize();             //Get size of window.
@@ -135,9 +139,10 @@ void LvlMenu::DrawIT(sf::RenderWindow &win)
 
     s.setTexture(t);
     s.setScale(ScaleX, ScaleY);      //Set scale
-    win.clear();
+    win.clear(sf::Color::White);
     win.draw(s);
     win.draw(txt);
+    win.draw(esp);
 
     for ( int i=0 ; i<10 ; i++)
     {

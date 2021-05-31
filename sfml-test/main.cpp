@@ -7,17 +7,13 @@
 #include "Game.h"
 #include "Help.h"
 #include "LvlMenu.h"
+
+
 int main()
 {
     Game sokoban;
     sokoban.gameLoop();
-    //sf::RenderWindow *window;
-    //window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "Sokoban");
 
-    //Help H;
-    //H.loop(*window);
-    //MainMenu M;
-    //M.MenuLoop(*window);
-
+    system("pause 0");
     return 0;
 }

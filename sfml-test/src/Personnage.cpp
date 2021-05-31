@@ -1,13 +1,12 @@
 #include "Personnage.h"
-#include "Objet.h"
 #include <bits/stdc++.h>
 using namespace std;
-Personnage::Personnage() : Objet(){
+Personnage::Personnage() {
 }
-Personnage::Personnage(Level lvl) : Objet() {
+Personnage::Personnage(Level lvl)  {
 
     for (int i = 0; i < lvl.getcarte().size(); i++) {
-        for (int j = 0; j <  lvl.getcarte()[1].size(); j++){
+        for (int j = 0; j <  lvl.getcarte()[i].size(); j++){
             if (lvl.getcarte()[i][j] == 4) {
                 x = i;
                 y = j;
@@ -15,15 +14,11 @@ Personnage::Personnage(Level lvl) : Objet() {
         }
     }
 }
-//Constructeur aves héritage(a vérifeir si objet need 2 arguments w personnage 4 wale)
-Personnage::Personnage(int x1 , int y1) : Objet() {
-    x=x1;
-    y=y1;
-}
+
 
 
 void Personnage::debug(){
-cout << "(" << x << "," << y << ")" << endl;
+//cout << "(" << x << "," << y << ")" << endl;
 }
 
 void Personnage::setindestination(bool f){

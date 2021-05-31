@@ -6,17 +6,16 @@
  using namespace std;
 
 // Perso Hérite d'objet
-class Personnage : public Objet
+class Personnage
 {
    private :
 
-
+        int x;
+        int y;
         bool indestination ;
    public:
        Personnage();
        Personnage(Level);
-   //Const
-       Personnage(int , int);
    //Position initial de player dépend mil level
        void initialiser_position(int,int);
    //Debug

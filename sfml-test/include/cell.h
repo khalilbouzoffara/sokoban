@@ -18,7 +18,6 @@ class cell
          void initialiser();
         void initialiser(int);
         void draw(sf::RenderWindow&);
-        sf::Vector2f getPosition();
         virtual ~cell();
 };
 

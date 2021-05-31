@@ -74,16 +74,15 @@ void Level::loadCarte(int n)
 
         carte.push_back(tempv);                // push the vector onto vector of vectors
     }
-
     inFile.close();
 }
 
 
 
 void Level::affichageCarte()
-{   cout<<"*************ONE MAP***************"<<endl;
+{
     for (int i = 0; i < carte.size(); i++) {
-        for (int j = 0; j < carte[0].size(); j++){
+        for (int j = 0; j < carte[i].size(); j++){
             switch (carte[i][j])
             {
             case 0:
@@ -108,7 +107,6 @@ void Level::affichageCarte()
         }
         cout << endl;
     }
-    cout<<"**************ONE MAP****************"<<endl;
 }
 
 void Level::setcarte(vector<vector<int>> _){

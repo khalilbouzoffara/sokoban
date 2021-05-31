@@ -8,14 +8,11 @@ class Help
 public:
     Help();
     void initHelp(sf::RenderWindow &);
-    void drawHelp(sf::RenderWindow &);
-    void loop(sf::RenderWindow &);
+    void drawHelp(sf::RenderWindow &,int);
     virtual ~Help();
 
 
 private:
-    //sf::Text t;
-    //sf::Text RETOURBUTTON;
     sf::Font font ;
 };
 

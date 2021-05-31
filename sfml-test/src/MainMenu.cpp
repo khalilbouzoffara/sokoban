@@ -12,7 +12,9 @@ MainMenu::MainMenu() :
     m_isExitButtonSelected(false),
     m_isExitButtonPressed(false),
     m_isHelpButtonPressed(false),
-    m_isHelpButtonSelected(false)
+    m_isHelpButtonSelected(false),
+    m_isAboutButtonPressed(false),
+    m_isAboutButtonSelected(false)
 {
 
 
@@ -23,7 +25,14 @@ MainMenu::~MainMenu()
 {
 
 }
-
+bool MainMenu::getABP()
+{
+    return m_isAboutButtonPressed;
+}
+bool MainMenu::getABS()
+{
+    return m_isAboutButtonSelected;
+}
 bool MainMenu::getPBP()
 {
     return m_isPlayButtonPressed;
@@ -72,6 +81,14 @@ void MainMenu::setHBS(bool t)
 {
     m_isHelpButtonSelected=t;
 }
+void MainMenu::setABP(bool t)
+{
+    m_isAboutButtonPressed=t;
+}
+void MainMenu::setABS(bool t)
+{
+    m_isAboutButtonSelected=t;
+}
 void MainMenu::Init(sf::RenderWindow &m_window)
 {
     if (!font.loadFromFile("textures/Bokka Solid Regular.otf"))
@@ -106,72 +123,26 @@ void MainMenu::Init(sf::RenderWindow &m_window)
                              m_window.getSize().y / 2 + 0.f);
     m_HelpButton.setCharacterSize(44);
 
+
+    //About Button
+    m_AboutButton.setFont(font);
+    m_AboutButton.setString("About");
+    m_AboutButton.setOrigin(m_AboutButton.getLocalBounds().width / 2,
+                           m_AboutButton.getLocalBounds().height / 2);
+    m_AboutButton.setPosition(m_window.getSize().x / 2,
+                             m_window.getSize().y / 2 + 80.f);
+    m_AboutButton.setCharacterSize(40);
+
     // Exit Button
     m_exitButton.setFont(font);
     m_exitButton.setString("Exit");
     m_exitButton.setOrigin(m_exitButton.getLocalBounds().width / 2,
                            m_exitButton.getLocalBounds().height / 2);
     m_exitButton.setPosition(m_window.getSize().x / 2,
-                             m_window.getSize().y / 2 + 100.f);
+                              m_window.getSize().y / 2 + 170.f);
     m_exitButton.setCharacterSize(44);
 }
 
-void MainMenu::ProcessInput(sf::RenderWindow &m_window)
-{
-
-    sf::Event event;
-    while (m_window.pollEvent(event))
-    {
-        if (event.type == sf::Event::Closed)
-        {
-            m_window.close();
-        }
-        else if (event.type == sf::Event::KeyPressed)
-        {
-            switch (event.key.code)
-            {
-            case sf::Keyboard::Up:
-            {
-                if (!m_isPlayButtonSelected)
-                {
-                    m_isPlayButtonSelected = true;
-                    m_isExitButtonSelected = false;
-                }
-                break;
-            }
-            case sf::Keyboard::Down:
-            {
-                if (!m_isExitButtonSelected)
-                {
-                    m_isPlayButtonSelected = false;
-                    m_isExitButtonSelected = true;
-                }
-                break;
-            }
-            case sf::Keyboard::Return:
-            {
-                m_isPlayButtonPressed = false;
-                m_isExitButtonPressed = false;
-
-                if (m_isPlayButtonSelected)
-                {
-                    m_isPlayButtonPressed = true;
-                }
-                else
-                {
-                    m_isExitButtonPressed = true;
-                }
-
-                break;
-            }
-            default:
-            {
-                break;
-            }
-            }
-        }
-    }
-}
 
 void MainMenu::keyPress(sf::RenderWindow &m_window)
 {
@@ -193,18 +164,30 @@ void MainMenu::Update(sf::RenderWindow &m_window)/*sf::Time deltaTime*/
         m_playButton.setFillColor(sf::Color::Black);
         m_HelpButton.setFillColor(sf::Color::White);
         m_exitButton.setFillColor(sf::Color::White);
+        m_AboutButton.setFillColor(sf::Color::White);
     }
     else if (m_isExitButtonSelected)
     {   m_HelpButton.setFillColor(sf::Color::White);
         m_exitButton.setFillColor(sf::Color::Black);
         m_playButton.setFillColor(sf::Color::White);
+        m_AboutButton.setFillColor(sf::Color::White);
     }
     else if (m_isHelpButtonSelected){
         m_exitButton.setFillColor(sf::Color::White);
         m_playButton.setFillColor(sf::Color::White);
         m_HelpButton.setFillColor(sf::Color::Black);
+        m_AboutButton.setFillColor(sf::Color::White);
 
     }
+     else if (m_isAboutButtonSelected){
+
+        m_exitButton.setFillColor(sf::Color::White);
+        m_playButton.setFillColor(sf::Color::White);
+        m_HelpButton.setFillColor(sf::Color::White);
+        m_AboutButton.setFillColor(sf::Color::Black);
+
+
+     }
 
     keyPress(m_window);
 }
@@ -240,6 +223,8 @@ void MainMenu::Draw(sf::RenderWindow &m_window)
     m_window.draw(m_HelpButton);
 
     m_window.draw(m_exitButton);
+
+    m_window.draw(m_AboutButton);
 
     m_window.display();
 

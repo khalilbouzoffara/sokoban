@@ -7,6 +7,8 @@
 #include "LvlMenu.h"
 #include <bits/stdc++.h>
 #include <SFML/Graphics.hpp>
+
+
 #define HEIGHT 600
 #define WIDTH 850
 Game::Game()
@@ -23,7 +25,6 @@ Game::Game()
     //open window
     window = new RenderWindow(VideoMode(WIDTH, HEIGHT), "Sokoban");
     window->setFramerateLimit(60);
-    //gameInitaliser();
     levelInitialiser();
 
 
@@ -37,19 +38,9 @@ Game::Game(Level lvl1)
     p = g;
 }
 
-void setLevel(Level l)
-{
-// lvl=l;
-};
 
-void Game::testing(int n)
+void Game::moveP(int n)
 {
-//    for (int i = 0; i < lvl.getcarte().size(); i++) {
-//    cout << lvl.getcarte()[i][0] << " ";
-//    cout << "we entered testingv1"<<endl;
-//    }
-//    p.debug();
-    //lvl.loadcarte();
     bool b;
     b=p.getindestination();
     Personnage g(lvl);
@@ -63,15 +54,6 @@ void Game::testing(int n)
     // it the the representation of level Example1.txt in a vector<vector<char>>
     //lvl.loadCarte basically updates the variable carte to our level
     testmap=lvl.getcarte();
-    cout<< lvlNumber<<endl;
-    cout<<"The testing function's affichage carte" << endl;
-//    lvl.affichageCarte();
-    //Personnage p(lvl);
-    // p.debug();
-    //***********************
-    //p.move(testmap);
-    //*****************************
-    cout << "we entered testingv3"<<endl;
     switch(n)
     {
     case 8:
@@ -90,7 +72,6 @@ void Game::testing(int n)
         p.right(testmap);
         break;
     }
-    cout << endl;
     lvl.setcarte(testmap);
     p.debug();
 }
@@ -100,7 +81,7 @@ int Game::NombreDe_b()
     int ct=0 ;
     for (int i = 0; i < lvl.getcarte().size(); i++)
     {
-        for (int j = 0; j <  lvl.getcarte()[1].size(); j++)
+        for (int j = 0; j <  lvl.getcarte()[i].size(); j++)
         {
             if (lvl.getcarte()[i][j] == 3 )
                 ct++ ;
@@ -112,52 +93,10 @@ int Game::NombreDe_b()
 
 }
 
-void Game::mainloop(int n)
-{
-    char s;
-    s='.';
-    p.setindestination(false);
-    //lvl.affichageCarte();
-    int b ;
-    b=NombreDe_b() ;
-    cout<< b ;
-    while (b>0 )
-    {
-        testing(n);
-        b=NombreDe_b();
-    }
-}
-
-void Game::mainloopOnce(int n)
-{
-    char s;
-    s='.';
-    int b ;
-    b=NombreDe_b() ;
-    cout<< b <<endl;
-
-    if (b>0)
-    {
-        testing(n);
-        b=NombreDe_b();
-    }
-    else
-    {
-        status=4;
-    }
-}
 
 void Game::gameInitaliser(sf::RenderWindow &win)
 {
-    /*Game background
-    Color background(233,178,121);
-    gameBG.setFillColor(background);
-    gameBG.setPosition(0, 0);
-    gameBG.setSize(Vector2f(WIDTH, HEIGHT));*/
-
-
-        //render objects
-        //  cout<<"still drawing case 1" <<endl;
+    //render objects
     sf::Vector2u TextureSize;  //Added to store texture size.
     sf::Vector2u WindowSize;
     sf::Sprite bak(gameBG); //Added to store window size
@@ -170,20 +109,17 @@ void Game::gameInitaliser(sf::RenderWindow &win)
 
     bak.setTexture(gameBG);
     bak.setScale(ScaleX, ScaleY); //Set scale
-    cout<<"bgg";
     win.draw(bak);
 
 }
 
 void Game::levelInitialiser()
 {
-
-    int initialX = 10, initialY = 100;
-
-    for (int i = 0; i <6; i++)
+    int initialX = 20, initialY = 50;
+    for (int i = 0; i <lvl.getcarte().size(); i++)
     {
         initialX = 100;
-        for (int j = 0; j <10; j++)
+        for (int j = 0; j <lvl.getcarte()[i].size(); j++)
         {
             switch(lvl.getcarte()[i][j])
             {
@@ -227,9 +163,7 @@ void Game::levelInitialiser()
 
 void Game::render()
 {
-    /*
 
-    */
     switch(status)
     {
     case 0://MM
@@ -237,29 +171,37 @@ void Game::render()
         break;
     case 1://game
         //render cycle
-        {window->clear();
+    {
+        window->clear();
 
         gameInitaliser(*window);
 
-        for (int i = 0; i < lvl.getrow(); i++)
+        for (int i = 0; i < lvl.getcarte().size(); i++)
         {
-            for (int j = 0; j < lvl.getcol(); j++)
+            for (int j = 0; j < lvl.getcarte()[i].size(); j++)
             {
                 mapA[i][j].draw(*window);
             }
         }
         //Display
         window->display();
-        break;}
-    case 2://Help
+        break;
+    }
+    case 2://Help 1
         window->clear();
-        H.drawHelp(*window);
+        H.drawHelp(*window,0);
         break;
     case 3://LvlMenu
         LM.DrawIT(*window);
         break;
+    case 5:
+        window->clear();
+        H.drawHelp(*window,1);
+        break;
 
     }
+
+
 }
 
 
@@ -267,159 +209,164 @@ void Game::gameLoop()
 {
     while (window->isOpen())
     {
-        //Handle Events
-        //cout << "Window is opened"<< endl;
         sf::Event event;
         while (window->pollEvent(event))
         {
-            //cout<<"event loop entered "<<endl;
             switch (status)
             {
             case 0://MM
+
                 if (event.type == sf::Event::KeyPressed)
                 {
                     if (event.key.code == sf::Keyboard::Up)
                     {
-                        cout<<"case 0: upped"<<endl;
                         if (MM.getPBS())
                         {
-                            cout<<"case 0: PBS"<<endl;
                             MM.setPBS(false);
                             MM.setHBS(false);
                             MM.setEBS(true);
+                            MM.setABS(false);
                         }
                         else if (MM.getHBS())
                         {
-                            cout<<"case 0: HBS"<<endl;
                             MM.setPBS(true);
                             MM.setHBS(false);
                             MM.setEBS(false);
+                            MM.setABS(false);
                         }
                         else if (MM.getEBS())
                         {
-                            cout<<"case 0: EBS"<<endl;
+                            MM.setPBS(false);
+                            MM.setHBS(false);
+                            MM.setEBS(false);
+                            MM.setABS(true);
+                        }
+                        else if (MM.getABS())
+                        {
+
                             MM.setPBS(false);
                             MM.setHBS(true);
                             MM.setEBS(false);
+                            MM.setABS(false);
+
                         }
                     }
                     if (event.key.code == sf::Keyboard::Down)
                     {
-                        cout<<"case 0: Down"<< endl;
                         if (MM.getPBS())
                         {
-                            cout<<"case 0: EBS"<< endl;
                             MM.setPBS(false);
                             MM.setHBS(true);
                             MM.setEBS(false);
+                            MM.setABS(false);
+
                         }
                         else if (MM.getHBS())
                         {
-                            cout<<"case 0: HBS"<< endl;
                             MM.setPBS(false);
                             MM.setHBS(false);
-                            MM.setEBS(true);
+                            MM.setEBS(false);
+                            MM.setABS(true);
                         }
                         else if (MM.getEBS())
                         {
-                            cout<<"case 0: EBS"<< endl;
                             MM.setPBS(true);
                             MM.setHBS(false);
                             MM.setEBS(false);
+                            MM.setABS(false);
+                        }
+                        else if (MM.getABS())
+                        {
+                            MM.setPBS(false);
+                            MM.setHBS(false);
+                            MM.setEBS(true);
+                            MM.setABS(false);
+
                         }
                     }
                     if (event.key.code == sf::Keyboard::Return)
                     {
-                        cout<<"case 0: return pressed" << endl;
-
                         if (MM.getPBS())
                         {
-                            cout<<"case 0: PBS : Status =1"<<endl;
                             status =3;
-                            cout<< "status = " << status;
-                            //MM.setPBP(true);
                         }
                         if(MM.getHBS())
                         {
-                            status=2;
+                            status=5;
 
                         }
                         if(MM.getEBS())
                         {
-                            cout<<"case 0: EBS :window will be closed"<<endl;
                             window->close();
+                        }
+                        if(MM.getABS())
+                        {
+                            status=69;
+
                         }
                         MM.setPBS(true);
                         MM.setHBS(false);
                         MM.setEBS(false);
+                        MM.setABS(false);
                     }
                     break;
-                    cout<<status<<endl;
                 }
             case 1://game
-                int b;
-                b=NombreDe_b() ;
-                cout<< b <<endl;
-                if (b==0)
-                {   cout<<"d5al"<<endl;
-                   status=4;
-                }
                 if (event.type == sf::Event::KeyPressed)
                 {
                     if (event.key.code == sf::Keyboard::Up)
                     {
-                        mainloopOnce(8);
-                        cout<<" up" << endl;
+                        moveP(8);
                     }
                     if (event.key.code == sf::Keyboard::Down)
                     {
-                        mainloopOnce(5);
-                        cout<<" Down" << endl;
+                        moveP(5);
                     }
 
                     if (event.key.code == sf::Keyboard::Right)
                     {
-                        mainloopOnce(6);
-                        cout<<" Right" << endl;
-                        //testing(6);
+                        moveP(6);
                     }
                     if (event.key.code == sf::Keyboard::Left)
                     {
-                        mainloopOnce(4);
-
-                        cout<<"Left" << endl;
+                        moveP(4);
+                    }
+                    if(event.key.code == sf::Keyboard::Escape)
+                    {
+                        status=0;
                     }
                     if (event.key.code == sf::Keyboard::R)
                     {
-                        cout<<"R" << endl;
-
                         Level l;
                         l.loadCarte(lvlNumber);
                         Personnage _(l);
                         p=_;
                         p.setindestination(false);
-                        //cout<<"bouhou"<<endl;
                         p.debug();
 
                         lvl=l;
                         lvl.affichageCarte();
-
                     }
+                    int b;
+                    b=NombreDe_b() ;
+                    if (b==0)
+                    {
+                        status=4;
+                    }
+
                 }
+
                 break;
             case 3: //LvlMenu
                 if (event.type == sf::Event::KeyPressed)
                 {
                     if (event.key.code == sf::Keyboard::Right)
                     {
-                        int k=-1;
+                        int k=0;
                         for (int i=0; i<10; i++)
                         {
                             if(LM.getLvlS(i))
                             {
-                                cout<<"case 0: PBS"<<i<<endl;
-                                //LM.setLvlS(i,false);
-                                //LM.setLvlS(i+1,true);
                                 k=i;
                             }
                         }
@@ -441,7 +388,40 @@ void Game::gameLoop()
                             lvlNumber++;
                         }
                         else lvlNumber=1;
-                        cout<<"lvl Number: "<< lvlNumber<< endl;
+                    }
+
+                    if(event.key.code == sf::Keyboard::Left)
+                    {
+                        int k=0;
+                        for(int i=0; i<10; i++)
+                        {
+                            if(LM.getLvlS(i))
+                            {
+                                k=i;
+                            }
+                        }
+                        //setting the color right on which level is chosen
+                        if (k>0)
+                        {
+                            LM.setLvlS(k,false);
+                            LM.setLvlS(k-1,true);
+                        }
+                        else
+                        {
+                            LM.setLvlS(0,false);
+                            LM.setLvlS(9,true);
+                        }
+
+                        //change Level
+                        if (lvlNumber>1)
+                        {
+                            lvlNumber--;
+                        }
+                        else lvlNumber=10;
+                    }
+                    if(event.key.code == sf::Keyboard::Escape)
+                    {
+                        status=0;
                     }
                     if (event.key.code == sf::Keyboard::Return)
                     {
@@ -459,24 +439,13 @@ void Game::gameLoop()
                 }
                 break;
             case 4://Level end
-//                int b;
-//                b=NombreDe_b() ;
-//                cout<< b <<endl;
-//                if (b==0)
-//                {   cout<<"d5al"<<endl;
-//                    mainloopOnce(8);
-//                    mainloopOnce(4);
-//                     mainloopOnce(5);
-//                }
-                {sf::Text next;
+            {
+                sf::Text next;
                 sf::Text retourn;
 
                 sf::Font font ;
                 if (event.type == sf::Event::KeyPressed)
                 {
-                    cout<<"suckiit" ;
-
-
                     if (event.key.code == sf::Keyboard::Right)
                     {
                         if(!nextPressed)
@@ -513,6 +482,27 @@ void Game::gameLoop()
                             memoir=5;
 
                         }
+                        /*
+                        if (RetourPressed)
+                        {
+                            if (lvlNumber==1)
+                            {
+                                lvlNumber=10;
+
+                            }
+                            else lvlNumber--;
+                            status=1;
+                            Level l;
+                            l.loadCarte(lvlNumber);
+                            Personnage _(l);
+                            p=_;
+                            p.setindestination(false);
+                            p.debug();
+                            lvl=l;
+                            memoir=5;
+
+                        }
+                        */
                         if (RetourPressed)
                         {
                             status=3;
@@ -555,52 +545,103 @@ void Game::gameLoop()
                 }
 
                 //Draw
-
-                cout<<"drawing 4"<<endl;
                 sf::Texture t;
                 sf::Texture taswira1;
                 sf::Texture taswira2;
                 taswira1.loadFromFile("textures/&é.png");
                 taswira2.loadFromFile("textures/zere.png");
-                t.loadFromFile("textures/win.png");
+                t.loadFromFile("textures/You win.png");
+
+
                 sf::Sprite s(t);
                 sf::Sprite s1(taswira1);
                 s1.setTexture(taswira1);
                 sf::Sprite s2(taswira2);
                 s2.setTexture(taswira2);
-                s.setOrigin(next.getLocalBounds().width / 2,
-                            s.getLocalBounds().height / 2);
-                //s1.setOrigin(next.getLocalBounds().width /2,
-                            //s.getLocalBounds().height/2 );
-                //s2.setOrigin(next.getLocalBounds().width / 2,
-                            //s.getLocalBounds().height / 2);
+                s.setOrigin(s.getLocalBounds().width / 2 -250.f, s.getLocalBounds().height / 2 -100.f);
                 s.setPosition(window->getSize().x/2-250, window->getSize().y/2-100);
                 s1.setPosition(window->getSize().x/2-110, window->getSize().y/2-135);
                 s2.setPosition(-105, window->getSize().y/2-135);
 
+                window->draw(s);
                 window->draw(s2);
                 window->draw(s1);
-               // window->draw(s);
+                window->draw(s1);
                 window->draw(next);
                 window->draw(retourn);
                 window->display();
-                break;}
-        case 2:
+                break;
+            }
+            case 2:
                 if (event.type == sf::Event::KeyPressed)
                 {
-                    if (event.key.code == sf::Keyboard::Return)
-                    status=0;
+                    if (event.key.code == sf::Keyboard::Escape)
+                        status=5;
 
                 }
-   //bracket of switch ending
+                break;
+
+            case 5:
+                if (event.type == sf::Event::KeyPressed)
+                {
+                    if (event.key.code == sf::Keyboard::Escape)
+                        status=0;
+
+                }
+                if (event.type == sf::Event::KeyPressed)
+                {
+                    if (event.key.code == sf::Keyboard::N)
+                        status=2;
+
+                }
+                break;
+            case 69 ://About
+                sf::Vector2u TextureSize;  //Added to store texture size.
+                sf::Vector2u WindowSize;   //Added to store window size.
+                sf::Texture t;
+                t.loadFromFile("textures/about.png");
+                sf::Sprite s(t);
+                TextureSize = t.getSize(); //Get size of texture.
+                WindowSize = window->getSize();             //Get size of window.
+
+                float ScaleX = (float) WindowSize.x / TextureSize.x;
+                float ScaleY = (float) WindowSize.y / TextureSize.y;     //Calculate scale.
+                sf::Font font ;
+                if (!font.loadFromFile("textures/Bokka Solid Regular.otf"))
+                {
+                    std::cout<<"error" ;
+                }
+                //esc button
+
+                sf::Text ESC;
+                ESC.setFont(font);
+                ESC.setString("Esc");
+                ESC.setOrigin(ESC.getLocalBounds().width / 2 +575.f,ESC.getLocalBounds().height / 2 +40.f);
+                ESC.setPosition(window->getSize().x -78.f,window->getSize().y -75.f);
+                ESC.setCharacterSize(40);
+                s.setTexture(t);
+                s.setScale(ScaleX, ScaleY);      //Set scale
+                window->clear(sf::Color::White);
+                window->draw(s);
+                window->draw(ESC);
+                window->display();
+                if (event.type == sf::Event::KeyPressed)
+                {
+                    if (event.key.code == sf::Keyboard::Escape)
+                        status=0;
+
+                }
+
             }
-            break;
 
 
-            if (event.type == sf::Event::Closed || event.key.code == sf::Keyboard::Escape)
-            {
-                window->close();
-            }
+
+
+
+        }
+        if (event.type == sf::Event::Closed )
+        {
+            window->close();
         }
 
         //update scene

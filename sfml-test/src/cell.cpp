@@ -190,12 +190,6 @@ void cell::setPosition(int x, int y)
     cellSprite.setPosition(x,y);
 }
 
-sf::Vector2f cell::getPosition()
-{
-    return cellSprite.getPosition();
-}
-
-
 cell::~cell()
 {
 

@@ -12,7 +12,7 @@
  using namespace sf;
 
 // notre carte
-cell mapA[6][10];
+cell mapA[15][15];
 
 sf::Texture gameBG;
 
