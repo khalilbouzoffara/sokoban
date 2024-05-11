@@ -1,0 +1,53 @@
+# depslib dependency file v1.0
+1619046805 source:c:\users\skyllilolz\desktop\studying\projet\sokoban\main.cpp
+	<level.h>
+	<Personnage.h>
+	<Objet.h>
+	<bits/stdc++.h>
+	<Game.h>
+
+1619131686 source:c:\users\skyllilolz\desktop\studying\projet\sokoban\src\level.cpp
+	"Level.h"
+	<bits/stdc++.h>
+
+1618871989 c:\users\skyllilolz\desktop\studying\projet\sokoban\include\level.h
+	<bits/stdc++.h>
+
+1619043797 source:c:\users\skyllilolz\desktop\studying\projet\sokoban\src\objet.cpp
+	"Objet.h"
+	<bits/stdc++.h>
+	"Game.h"
+
+1619134469 c:\users\skyllilolz\desktop\studying\projet\sokoban\include\objet.h
+	<bits/stdc++.h>
+
+1619043497 source:c:\users\skyllilolz\desktop\studying\projet\sokoban\src\soko.cpp
+	"Soko.h"
+	<bits/stdc++.h>
+
+1618994782 c:\users\skyllilolz\desktop\studying\projet\sokoban\include\soko.h
+	<level.h>
+	<Personnage.h>
+	<Objet.h>
+	<bits/stdc++.h>
+
+1619131266 c:\users\skyllilolz\desktop\studying\projet\sokoban\include\personnage.h
+	"Objet.h"
+	<bits/stdc++.h>
+	<level.h>
+
+1619133174 source:c:\users\skyllilolz\desktop\studying\projet\sokoban\src\personnage.cpp
+	"Personnage.h"
+	"Objet.h"
+	<bits/stdc++.h>
+
+1619131057 c:\users\skyllilolz\desktop\studying\projet\sokoban\include\game.h
+	<level.h>
+	<Personnage.h>
+	<Objet.h>
+	<bits/stdc++.h>
+
+1619134190 source:c:\users\skyllilolz\desktop\studying\projet\sokoban\src\game.cpp
+	"Game.h"
+	<bits/stdc++.h>
+

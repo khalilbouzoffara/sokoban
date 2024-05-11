@@ -1,0 +1,26 @@
+ 
+
+
+Personnage herite Objet;
+
+Class: Soko
+  Personnage	
+	Level lvl
+carte.lvl
+for i 
+for j 
+	find J
+if lvl.peutup():
+	p.up()
+	lvl.up()
+
+# # # # # # # # # #
+# . . . d b . . . #
+# . b # # . # # . #
+# . d J . b . . . #
+# . . . . d # . . #
+# # # # # # # # # #
+
+[  [line 1] , .. , [line n]]
+i < size=6 : 
+j < 

@@ -1,0 +1,24 @@
+ROLE OF: ALA
+1) b ---> d : B //
+5) Saves d //
+Previous:
+J b .
+J .
+Three cases actually: 
+J b d ---> . J B   
+J B . ---> . J b(save)
+J B d ---> . J B(save)
+J d ---> . J(save) 
+
+if (personond())
+
+ROLE OF: KHALIL
+3) Level Initialiser //
+4) Get out of Mainloop //
+
+
+
+
+
+ROLE OF: AZIZ
+2) Level Finisher //
